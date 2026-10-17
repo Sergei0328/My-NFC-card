@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цифровая визитка</title>
+    <!-- Подключаем шрифт для красоты -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #121212; /* Темный фон, подходит к золотой карте */
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #333;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #d4af37; /* Золотая рамка для фото */
+            margin-bottom: 20px;
+        }
+        .logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 10px 0 5px;
+            font-weight: 600;
+        }
+        .company {
+            color: #d4af37; /* Золотой цвет текста */
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .contact-links a {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #2c2c2c;
+            padding: 12px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            font-size: 15px;
+        }
+        .contact-links a:hover {
+            background-color: #d4af37;
+            color: #121212;
+        }
+        .save-btn {
+            background-color: #d4af37;
+            color: #121212;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: opacity 0.3s;
+        }
+        .save-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- 1. ЛОГОТИП ФИРМЫ (замените logo.png на имя вашего файла) -->
+        <img src="logo.png" alt="Логотип" class="logo">
+        
+        <!-- 2. ФОТО ДРУГА (замените photo.jpg на имя вашего файла) -->
+        <img src="photo.jpg" alt="Фото" class="avatar">
+        
+        <!-- 3. ИМЯ И КОМПАНИЯ -->
+        <h1>Имя Фамилия</h1>
+        <div class="company">Название вашей фирмы</div>
+        
+        <!-- 4. КОНТАКТНЫЕ ДАННЫЕ (замените ссылки на реальные) -->
+        <div class="contact-links">
+            <a href="tel:+1234567890">📞 +372 5555 5555</a>
+            <a href="mailto:email@example.com">✉️ email@example.com</a>
+            <a href="https://www.linkedin.com/in/username/" target="_blank">💼 LinkedIn</a>
+            <a href="https://www.instagram.com/username/" target="_blank">📸 Instagram</a>
+        </div>
+        
+        <!-- Кнопка сохранения в контакты (мы настроим ее позже) -->
+        <button class="save-btn" onclick="saveContact()">Сохранить контакт</button>
+    </div>
+
+    <script>
+        // Этот скрипт создает файл vCard прямо в браузере и скачивает его
+        function saveContact() {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Имя Фамилия
+ORG:Название фирмы
+TEL;TYPE=CELL:+372 5555 5555
+EMAIL:email@example.com
+URL:https://www.example.com
+END:VCARD`;
+
+            const blob = new Blob([vcard], { type: "text/vcard" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "contact.vcf";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+
+</body>
+</html>
