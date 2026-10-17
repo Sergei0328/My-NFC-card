@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Цифровая визитка</title>
+    <title>Sergei Kolesnik</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -20,38 +20,32 @@
         }
         .card {
             background-color: #1e1e1e;
-            /* Верхние углы прямые, так как там фото на всю ширину */
             border-radius: 0 0 20px 20px; 
-            padding: 0 0 30px 0; /* Убрали отступ сверху */
+            padding: 0 0 30px 0;
             text-align: center;
             max-width: 400px;
             width: 100%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 1px solid #333;
             border-top: none;
-            overflow: hidden; /* Чтобы фото не вылезало за края */
+            overflow: hidden;
         }
-        
-        /* --- ФОТО НА ВСЮ ШИРИНУ --- */
         .cover-photo {
             width: 100%;
-            height: 250px; /* Высота фото */
+            height: 250px;
             object-fit: cover; 
-            object-position: left center; /* ФИКСИРУЕМ ЛЕВЫЙ КРАЙ */
+            object-position: left center;
             display: block;
             margin-bottom: 20px;
         }
-        /* --------------------------------- */
-        
-        /* Отступы для текста внутри карточки */
         .content-padding {
             padding: 0 30px;
         }
-
         h1 {
             font-size: 24px;
             margin: 10px 0 5px;
             font-weight: 600;
+            text-transform: uppercase;
         }
         .position {
             color: #a0a0a0;
@@ -106,22 +100,19 @@
 <body>
 
     <div class="card">
-        <!-- ФОТО НА ВСЮ ШИРИНУ -->
-        <img src="photo.jpg" alt="Фото" class="cover-photo">
+        <img src="photo.jpg" alt="Sergei Kolesnik" class="cover-photo">
         
         <div class="content-padding">
-            <!-- ЗАМЕНИТЕ ИМЯ, ДОЛЖНОСТЬ И КОМПАНИЮ ЗДЕСЬ -->
-            <h1>Иван Иванов</h1>
-            <div class="position">Менеджер по продажам</div>
-            <div class="company">ООО "Ромашка"</div>
+            <h1>SERGEI KOLESNIK</h1>
+            <div class="position">CEO</div>
+            <div class="company">HORECA SOLUTIONS OU</div>
             
             <div class="contact-links">
-                <!-- ЗАМЕНИТЕ НОМЕРА, ПОЧТУ И ССЫЛКИ ЗДЕСЬ -->
-                <a href="tel:+37255555555">📞 +372 5555 5555</a>
-                <a href="mailto:friend@example.com">✉️ friend@example.com</a>
-                <a href="https://wa.me/37255555555" target="_blank">💬 WhatsApp</a>
-                <a href="https://www.example.com" target="_blank">🌐 www.example.com</a>
-                <a href="https://maps.google.com/?q=Таллинн" target="_blank">📍 г. Таллинн, ул. Примерная, 1</a>
+                <a href="tel:+37251905766">📞 +372 5190 5766</a>
+                <a href="mailto:sergei@horecasolutions.eu">✉️ sergei@horecasolutions.eu</a>
+                <a href="https://wa.me/37251905766" target="_blank">💬 WhatsApp</a>
+                <a href="https://www.horecasolutions.eu" target="_blank">🌐 www.horecasolutions.eu</a>
+                <a href="https://maps.google.com/?q=Tallinn, Estonia" target="_blank">📍 Tallinn, Estonia</a>
             </div>
             
             <button class="save-btn" onclick="saveContact()">Сохранить контакт</button>
@@ -129,24 +120,23 @@
     </div>
 
     <script>
-        // ЗАМЕНИТЕ ЭТИ ДАННЫЕ НА ДАННЫЕ ДРУГА (для кнопки скачивания)
         function saveContact() {
             const vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:Иван Иванов
-ORG:ООО "Ромашка"
-TITLE:Менеджер по продажам
-TEL;TYPE=CELL:+37255555555
-EMAIL:friend@example.com
-URL:https://www.example.com
-ADR;TYPE=WORK:;;ул. Примерная, 1;Таллинн;;;Эстония
+FN:SERGEI KOLESNIK
+ORG:HORECA SOLUTIONS OU
+TITLE:CEO
+TEL;TYPE=CELL:+37251905766
+EMAIL:sergei@horecasolutions.eu
+URL:https://www.horecasolutions.eu
+ADR;TYPE=WORK:;;;Tallinn;;;Estonia
 END:VCARD`;
 
             const blob = new Blob([vcard], { type: "text/vcard" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
-            a.download = "contact.vcf";
+            a.download = "Sergei_Kolesnik.vcf";
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
