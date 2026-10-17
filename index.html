@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Цифровая визитка</title>
-    <!-- Подключаем шрифт для красоты -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #121212; /* Темный фон, подходит к золотой карте */
+            background-color: #121212;
             color: #ffffff;
             display: flex;
             justify-content: center;
@@ -21,43 +20,56 @@
         }
         .card {
             background-color: #1e1e1e;
-            border-radius: 20px;
-            padding: 40px 30px;
+            /* Верхние углы прямые, так как там фото на всю ширину */
+            border-radius: 0 0 20px 20px; 
+            padding: 0 0 30px 0; /* Убрали отступ сверху */
             text-align: center;
             max-width: 400px;
             width: 100%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 1px solid #333;
+            border-top: none;
+            overflow: hidden; /* Чтобы фото не вылезало за края */
         }
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #d4af37; /* Золотая рамка для фото */
+        
+        /* --- ФОТО НА ВСЮ ШИРИНУ --- */
+        .cover-photo {
+            width: 100%;
+            height: 250px; /* Высота фото. Можете изменить на 200px или 300px */
+            object-fit: cover; /* Заполняет всю область без искажений */
+            display: block;
             margin-bottom: 20px;
         }
-        .logo {
-            max-width: 150px;
-            height: auto;
-            margin-bottom: 15px;
+        /* --------------------------------- */
+        
+        /* Отступы для текста внутри карточки */
+        .content-padding {
+            padding: 0 30px;
         }
+
         h1 {
             font-size: 24px;
             margin: 10px 0 5px;
             font-weight: 600;
         }
+        .position {
+            color: #a0a0a0;
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
         .company {
-            color: #d4af37; /* Золотой цвет текста */
+            color: #d4af37;
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 25px;
+            font-weight: 600;
         }
         .contact-links {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 30px;
         }
         .contact-links a {
@@ -67,7 +79,7 @@
             padding: 12px;
             border-radius: 10px;
             transition: background-color 0.3s;
-            font-size: 15px;
+            font-size: 14px;
         }
         .contact-links a:hover {
             background-color: #d4af37;
@@ -93,38 +105,40 @@
 <body>
 
     <div class="card">
-        <!-- 1. ЛОГОТИП ФИРМЫ (замените logo.png на имя вашего файла) -->
-        <img src="logo.png" alt="Логотип" class="logo">
+        <!-- ФОТО НА ВСЮ ШИРИНУ -->
+        <img src="photo.jpg" alt="Фото" class="cover-photo">
         
-        <!-- 2. ФОТО ДРУГА (замените photo.jpg на имя вашего файла) -->
-        <img src="photo.jpg" alt="Фото" class="avatar">
-        
-        <!-- 3. ИМЯ И КОМПАНИЯ -->
-        <h1>Имя Фамилия</h1>
-        <div class="company">Название вашей фирмы</div>
-        
-        <!-- 4. КОНТАКТНЫЕ ДАННЫЕ (замените ссылки на реальные) -->
-        <div class="contact-links">
-            <a href="tel:+1234567890">📞 +372 5555 5555</a>
-            <a href="mailto:email@example.com">✉️ email@example.com</a>
-            <a href="https://www.linkedin.com/in/username/" target="_blank">💼 LinkedIn</a>
-            <a href="https://www.instagram.com/username/" target="_blank">📸 Instagram</a>
+        <div class="content-padding">
+            <!-- ЗАМЕНИТЕ ИМЯ, ДОЛЖНОСТЬ И КОМПАНИЮ ЗДЕСЬ -->
+            <h1>Иван Иванов</h1>
+            <div class="position">Менеджер по продажам</div>
+            <div class="company">ООО "Ромашка"</div>
+            
+            <div class="contact-links">
+                <!-- ЗАМЕНИТЕ НОМЕРА, ПОЧТУ И ССЫЛКИ ЗДЕСЬ -->
+                <a href="tel:+37255555555">📞 +372 5555 5555</a>
+                <a href="mailto:friend@example.com">✉️ friend@example.com</a>
+                <a href="https://wa.me/37255555555" target="_blank">💬 WhatsApp</a>
+                <a href="https://www.example.com" target="_blank">🌐 www.example.com</a>
+                <a href="https://maps.google.com/?q=Таллинн" target="_blank">📍 г. Таллинн, ул. Примерная, 1</a>
+            </div>
+            
+            <button class="save-btn" onclick="saveContact()">Сохранить контакт</button>
         </div>
-        
-        <!-- Кнопка сохранения в контакты (мы настроим ее позже) -->
-        <button class="save-btn" onclick="saveContact()">Сохранить контакт</button>
     </div>
 
     <script>
-        // Этот скрипт создает файл vCard прямо в браузере и скачивает его
+        // ЗАМЕНИТЕ ЭТИ ДАННЫЕ НА ДАННЫЕ ДРУГА (для кнопки скачивания)
         function saveContact() {
             const vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:Имя Фамилия
-ORG:Название фирмы
-TEL;TYPE=CELL:+372 5555 5555
-EMAIL:email@example.com
+FN:Иван Иванов
+ORG:ООО "Ромашка"
+TITLE:Менеджер по продажам
+TEL;TYPE=CELL:+37255555555
+EMAIL:friend@example.com
 URL:https://www.example.com
+ADR;TYPE=WORK:;;ул. Примерная, 1;Таллинн;;;Эстония
 END:VCARD`;
 
             const blob = new Blob([vcard], { type: "text/vcard" });
@@ -137,6 +151,5 @@ END:VCARD`;
             document.body.removeChild(a);
         }
     </script>
-
 </body>
 </html>
